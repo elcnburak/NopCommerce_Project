@@ -1,13 +1,13 @@
 package Utility;
 
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger; // Logger paketi değiştirildi
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -16,11 +16,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
-import java.util.logging.Logger;
 
 public class BaseDriver {
 
-    public static Logger logTutma = (Logger) LogManager.getLogger(); // Logları ekleyeceğim nesneyi başlattım.
+    public static Logger logTutma = LogManager.getLogger(); // Logger nesnesi düzeltildi
 
     public static WebDriver driver;
     public static WebDriverWait wait;
@@ -70,14 +69,13 @@ public class BaseDriver {
     @BeforeMethod
     public void BeforeMetod(){
         logTutma.info("Metod başladı");
-        logTutma.warning("WARN : Metod başladı, hata oluşmuş olsa idi");
+        logTutma.warn("WARN : Metod başladı, hata oluşmuş olsa idi");
     }
 
     @AfterMethod
     public void AfterMetod(ITestResult sonuc){ // tesin sonuç ve isim bilgisini olduğu değişkeni
         logTutma.info(sonuc.getName()+  " Metod bitti "+ (sonuc.getStatus() ==1 ? "Passed" : "failed"));
 
-        logTutma.warning("WARN : Metod bitti, hata oluşmuş olsa idi");
+        logTutma.warn("WARN : Metod bitti, hata oluşmuş olsa idi");
     }
 }
-
