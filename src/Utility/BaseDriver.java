@@ -76,6 +76,6 @@ public class BaseDriver {
     public void AfterMetod(ITestResult sonuc){ // tesin sonuç ve isim bilgisini olduğu değişkeni
         logTutma.info(sonuc.getName()+  " Metod bitti "+ (sonuc.getStatus() ==1 ? "Passed" : "failed"));
 
-        logTutma.warn("WARN : Metod bitti, hata oluşmuş olsa idi");
+        logTutma.warn("WARN : Metod bitti,. hata oluşmuş olsa idi");
     }
 }
