@@ -64,11 +64,11 @@ public class Tools extends BaseDriver {
     }
 
 
-//    public static void ActionHoveOver(WebElement e){
-//            Actions actions=new Actions(BaseDriver.driver);
-//            new Actions(BaseDriver.driver)
-//                    .moveToElement(e)
-//                    .build()
-//                    .perform();
-//        }
+    public static void ActionHoveOver(WebElement e){
+            Actions actions=new Actions(BaseDriver.driver);
+            new Actions(BaseDriver.driver)
+                    .moveToElement(e)
+                    .build()
+                    .perform();
+        }
 }
