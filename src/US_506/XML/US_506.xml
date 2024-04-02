@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="my suit">
+    <test name="US_506_Gruplama">
+
+        <!-- hangi gruplar çalıştırılacak-->
+        <groups>
+            <run>
+                <include name="UITesting,Tab Menu,Order"></include>
+            </run>
+        </groups>
+
+        <!--çalışcak classların yazıldığı bölüm-->
+        <classes>
+            <class name="US_506.US_506"></class>
+        </classes>
+
+    </test>
+</suite>

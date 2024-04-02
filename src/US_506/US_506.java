@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class US_506 extends BaseDriver {
 
-    @Test
+    @Test(groups={"UITesting","Tabe Menu","Order"}, priority = 2)
     public void US_506TestCase() {
 
         US_506_Elements elements= new US_506_Elements();
