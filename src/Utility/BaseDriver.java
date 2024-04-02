@@ -1,5 +1,6 @@
 package Utility;
 
+import US_507.US_507_Elements;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger; // Logger paketi değiştirildi
 import org.openqa.selenium.By;
@@ -38,22 +39,19 @@ public class BaseDriver {
     }
 
     public void LoginTest(){
+        US_507_Elements elems=new US_507_Elements();
         System.out.println("Login Test başladı");
         logTutma.info("Log işlemi başladı");
-        driver.get("https://demo.nopcommerce.com/login?returnUrl=%2F");
-        Tools.Bekle(2);
+        driver.get("https://demo.nopcommerce.com/");
+        wait.until(ExpectedConditions.urlToBe("https://demo.nopcommerce.com/"));
 
-        WebElement email=driver.findElement(By.xpath("//*[@id='Email']"));
-        email.sendKeys("elcnburak@gmail.com");
+        Tools.myClick(elems.loginTab);
+        Tools.mySendKeys(elems.emailLogin, "elcnburak@gmail.com");
+        Tools.mySendKeys(elems.passwordLogin, "Admin123**");
+        Tools.myClick(elems.loginBtn);
 
-        WebElement password=driver.findElement(By.xpath("//*[@id='Password']"));
-        password.sendKeys("Admin123**");
-
-        WebElement loginBtn=driver.findElement(By.xpath("body/div[6]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/form[1]/div[3]/button[1]")); //By.cssSelector("[value='Login']")
-        loginBtn.click();
-
-        wait.until(ExpectedConditions.titleIs("My Account"));
-        Assert.assertTrue(driver.getTitle().equals("My Account"));
+        wait.until(ExpectedConditions.visibilityOf(elems.myAccountElement));
+        Assert.assertTrue(elems.myAccountElement.isDisplayed(), "My account is not visible");
         System.out.println("Login Test bitti");
 
         logTutma.info("Log işlemi tamamlandı"); // normal bir bilgi
