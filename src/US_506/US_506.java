@@ -12,8 +12,9 @@ import java.time.Duration;
 
 public class US_506 extends BaseDriver {
 
-    @Test(groups={"UITesting","Tabe Menu","Order"}, priority = 2)
-    public void US_506TestCase() {
+    @Test(dependsOnMethods="US_502",groups={"UITesting","Tab Menu","Order"}, priority = 2)
+
+    public void US_506() {
 
         US_506_Elements elements= new US_506_Elements();
 
@@ -31,9 +32,5 @@ public class US_506 extends BaseDriver {
         String actualMessage = message.getText();
         String expectedMessage = "The product has been added to your shopping cart";
         Assert.assertTrue(actualMessage.contains(expectedMessage), "Mesaj görünmedi veya beklenen metni içermiyor.");
-
-
     }
-
-
 }
