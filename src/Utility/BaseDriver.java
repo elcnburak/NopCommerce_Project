@@ -17,6 +17,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class BaseDriver {
 
@@ -29,34 +30,68 @@ public class BaseDriver {
 
         driver=new ChromeDriver();
 
-        //driver.manage().window().maximize(); // Ekranı max yapıyor.
+        driver.manage().window().maximize(); // Ekranı max yapıyor.
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20)); // 20 sn mühlet: sayfayı yükleme mühlet
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20)); // 20 sn mühlet: elementi bulma mühleti
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         Tools.Bekle(2);
-        LoginTest();
+        RegisterAndLogin();
     }
 
-    public void LoginTest(){
-        US_507_Elements elems=new US_507_Elements();
-        System.out.println("Login Test başladı");
+    public void RegisterAndLogin() {
+        System.out.println("Register ve Login işlemi başladı");
         logTutma.info("Log işlemi başladı");
         driver.get("https://demo.nopcommerce.com/");
-        wait.until(ExpectedConditions.urlToBe("https://demo.nopcommerce.com/"));
 
-        Tools.myClick(elems.loginTab);
-        Tools.mySendKeys(elems.emailLogin, "elcnburak@gmail.com");
-        Tools.mySendKeys(elems.passwordLogin, "Admin123**");
-        Tools.myClick(elems.loginBtn);
+        Tools.Bekle(2);
 
-        wait.until(ExpectedConditions.visibilityOf(elems.myAccountElement));
-        Assert.assertTrue(elems.myAccountElement.isDisplayed(), "My account is not visible");
-        System.out.println("Login Test bitti");
+        // Register işlemleri burada başlıyor
+        WebElement register = driver.findElement(By.xpath("//a[@class='ico-register']"));
+        register.click(); // Register butonuna tıklandı
 
-        logTutma.info("Log işlemi tamamlandı"); // normal bir bilgi
+        WebElement registerName = driver.findElement(By.xpath("//input[@id='FirstName']"));
+        registerName.sendKeys(generateRandomString());// Name bilgisi random gönderildi
 
+        WebElement registerSurname = driver.findElement(By.xpath("//input[@id='LastName']"));
+        registerSurname.sendKeys(generateRandomString()); // Surname bilgisi random gönderildi
+
+        String loginEmail = generateRandomEmail(); // Random e-posta oluşturuldu
+        WebElement registerEmail = driver.findElement(By.xpath("//input[@id='Email']"));
+        registerEmail.sendKeys(loginEmail); // Oluşturulan random e-posta adresi kullanıldı
+
+        Tools.Bekle(30);
+
+        WebElement RegisterPassword = driver.findElement(By.xpath("//input[@id='Password']"));
+        RegisterPassword.sendKeys("Techno123"); // sabit password seçildi
+
+        WebElement confirmPassword = driver.findElement(By.xpath("//input[@id='ConfirmPassword']"));
+        confirmPassword.sendKeys("Techno123");//sabit password seçildi
+
+        WebElement registerButon=driver.findElement(By.id("register-button"));
+        registerButon.click(); // Register butona tıklandı
+
+        WebElement continueButon=driver.findElement(By.xpath("//a[@class='button-1 register-continue-button']"));
+        continueButon.click(); // continue button tıklandı
+
+        /// Login işlemeleri burada başlıyor
+
+        WebElement LogIn=driver.findElement(By.xpath("//a[@href='/login?returnUrl=%2F' and contains(text(),'Log in')]"));
+        LogIn.click();
+
+        WebElement email=driver.findElement(By.xpath("//input[@id='Email']"));
+        email.sendKeys(loginEmail); // Oluşturulan random e-posta adresi kullanıldı
+
+        WebElement password=driver.findElement(By.xpath("//input[@id='Password']"));
+        password.sendKeys("Techno123");
+
+        WebElement LoginButton=driver.findElement(By.xpath("//button[@class='button-1 login-button' and text()='Log in']"));
+        LoginButton.click();
+
+        System.out.println("Register ve Login işlemi tamamlandı");
+        logTutma.info("Log işlemi tamamlandı");
     }
+
     @AfterClass
     public void KapanisIslemleri(){  // TearDown
         Tools.Bekle(3);
@@ -75,5 +110,14 @@ public class BaseDriver {
         logTutma.info(sonuc.getName()+  " Metod bitti "+ (sonuc.getStatus() ==1 ? "Passed" : "failed"));
 
         logTutma.warn("WARN : Metod bitti,. hata oluşmuş olsa idi");
+    }
+    public String generateRandomString() {
+        Random random = new Random();
+        return "kullanici" + random.nextInt(1000);
+    }
+
+    public String generateRandomEmail() {
+        Random random = new Random();
+        return "kullanici" + random.nextInt(1000) + "@technostudy.com";
     }
 }
