@@ -63,7 +63,7 @@ public class Tools extends BaseDriver {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-
+//This method is used for the Action class
     public static void ActionHoveOver(WebElement e){
             Actions actions=new Actions(BaseDriver.driver);
             new Actions(BaseDriver.driver)
