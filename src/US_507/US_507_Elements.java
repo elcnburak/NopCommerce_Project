@@ -31,7 +31,22 @@ public class US_507_Elements extends BaseDriver {
     public WebElement tabMenu;
 
     @FindBy(xpath = "(//*[text()='Computers '])[1]")
-    public WebElement ComputersTab;
+    public WebElement computersTab;
+
+    @FindBy(linkText = "Desktops")
+    public WebElement descktopsTab;
+
+    @FindBy(xpath = "//*[@class='page-title']/h1")
+    public WebElement descktopsPageTitle;
+
+    @FindBy(xpath = "//*[text()='Build your own computer']")
+    public WebElement buildOwnPC;
+
+
+
+
+
+
 
 
 

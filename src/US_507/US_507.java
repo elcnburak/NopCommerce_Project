@@ -13,11 +13,15 @@ public class US_507 extends BaseDriver {
     @Test
     public void TestComputersOrder(){
         US_507_Elements elems=new US_507_Elements();
-        Tools.myClick(elems.ComputersTab);
-//        Tools.myClick(elems.ComputersTab);
+        Assert.assertTrue(elems.tabMenu.isDisplayed(),"Tab menu is not visible");
+        Tools.ActionHoveOver(elems.computersTab);
+        Tools.ActionHoveOverClick(elems.descktopsTab);
+        Assert.assertTrue(elems.descktopsPageTitle.isDisplayed(),"The Desktops page is not opened");
+        Tools.myClick(elems.buildOwnPC);
 
 
-        //Assert.assertTrue(elems.tabMenu.isDisplayed(),"Tab menu is not visible");
+
+
 //        Actions actions=new Actions(driver);
 //        new Actions(driver)
 //                .moveToElement(elems.ComputersTab)
