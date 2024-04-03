@@ -1,5 +1,6 @@
 package Utility;
 
+import US_507.US_507_Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Tools extends BaseDriver {
     static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -71,4 +74,36 @@ public class Tools extends BaseDriver {
                     .build()
                     .perform();
         }
+    public static void ActionHoveOverClick(WebElement e) {
+        Actions actions = new Actions(BaseDriver.driver);
+        new Actions(BaseDriver.driver)
+                .moveToElement(e)
+                .click()
+                .build()
+                .perform();
+    }
+
+    public static void RandomRAM() {
+        // Create a list of items
+        US_507_Elements elems = new US_507_Elements();
+        List<WebElement> ramItems = new ArrayList<>();
+        ramItems.add(elems.ram2GB);
+        ramItems.add(elems.ram4GB);
+        ramItems.add(elems.ram8GB);
+
+        // Generate a random index
+        Random random = new Random();
+        int randomIndex = random.nextInt(ramItems.size());
+
+        // Select the item at the random index
+        WebElement selectedItem = ramItems.get(randomIndex);
+        myClick(selectedItem);}
+
+    public static void RandomHDD () {
+        List<WebElement> options = driver.findElements(By.xpath("//*[@name='product_attribute_3']"));
+        int randomIndexHDD = new Random().nextInt(options.size());
+        options.get(randomIndexHDD).click();
+    }
+
+
 }
