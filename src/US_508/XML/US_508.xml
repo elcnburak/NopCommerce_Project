@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="my suit">
+    <test name="US_508">
+        <parameter name="searchItem" value="Adobe Photoshop CS4"></parameter>
+        <classes>
+            <class name="US_508.US_508"></class>
+        </classes>
+
+    </test>
+</suite>
