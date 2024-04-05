@@ -2,15 +2,7 @@
 
 <suite name="my suit">
     <test name="US_507">
-
-
-        <groups>
-            <run>
-                <include name="UITesting,Tab Menu,Order"></include>
-            </run>
-        </groups>
-
-        <classes>
+            <classes>
             <class name="US_507.US_507"></class>
         </classes>
 
