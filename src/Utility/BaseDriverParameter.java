@@ -19,7 +19,7 @@ import static Utility.BaseDriver.logTutma;
 
 public class BaseDriverParameter {
 
-    public WebDriver driver; // WebDriver tipinde değişken tanımlayın
+    public static WebDriver driver; // WebDriver tipinde değişken tanımlayın
     public WebDriverWait wait;
 
     @BeforeClass
