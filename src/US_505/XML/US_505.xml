@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<suite name="my suit">
-
+<suite name="my suite">
     <test name="test1">
         <parameter name="searchText" value="Apple MacBook Pro 13-inch"></parameter>
-
         <classes>
             <class name="US_505.US_505"></class>
         </classes>
     </test>
+</suite>

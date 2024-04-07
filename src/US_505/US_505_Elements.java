@@ -9,7 +9,6 @@ import java.util.List;
 
 public class US_505_Elements {
 
-
     @FindBy(xpath="//a[@href='/computers']")
     public WebElement computerLink;
 
@@ -20,6 +19,10 @@ public class US_505_Elements {
     public List<WebElement> subMenuItems;
     @FindBy(xpath ="//input[@id='small-searchterms']")
     public WebElement search;
+
+
+    @FindBy(xpath =" //button[@class='button-1 search-box-button']")
+    public WebElement searchButton;
 
 
 
