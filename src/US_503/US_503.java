@@ -9,7 +9,7 @@ import Utility.Tools;
 import static Utility.Tools.myClick;
 
 
-public class  PositiveAndNegativeLoginCombinationsTest extends BaseDriverSimple {
+public class US_503 extends BaseDriverSimple {
 
     @Test(priority = 1, dataProvider = "credentials")
     public void testInvalidLogin(String email, String password) {
